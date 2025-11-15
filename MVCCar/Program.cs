@@ -1,8 +1,12 @@
+using MVCCar.Models;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<MVCCarContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCCarContext") ??
+        throw new InvalidOperationException("Connection string 'MVCCarContext' not found.")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

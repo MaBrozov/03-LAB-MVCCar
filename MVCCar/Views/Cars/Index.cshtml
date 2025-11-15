@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVCCar.Models.Car>
+
+@{
+    ViewData["Title"] = "Popis Automobila";
+}
+
+<h1>Popis Automobila</h1>
+
+<p>
+    <a asp-action="Create">Dodaj Novi Automobil</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Boja</th>
+            <th>Godina</th>
+            <th>Cijena</th>
+            <th>Proizvođač</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Name</td>
+                <td>@car.Color</td>
+                <td>@car.ProductionYear</td>
+                <td>@car.Price</td>
+                <td>@car.Manufacturer</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@car.Id">Uredi</a> |
+                    <a asp-action="Details" asp-route-id="@car.Id">Detalji</a> |
+                    <a asp-action="Delete" asp-route-id="@car.Id">Izbriši</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
